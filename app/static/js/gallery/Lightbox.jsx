@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 
-define('lightbox', ['react', 'handle-resize-mixin', 'photo-mixin'], function(React, HandleResizeMixin, PhotoMixin) {
+define('lightbox', ['react', 'handle-resize-mixin', 'photo-mixin', 'jquery-hotkeys'], function(React, HandleResizeMixin, PhotoMixin, jqueryHotkeys) {
 
     var Lightbox = React.createClass({
 
@@ -21,6 +21,24 @@ define('lightbox', ['react', 'handle-resize-mixin', 'photo-mixin'], function(Rea
             };
         },
 
+        componentDidMount: function () {
+            // Key codes
+            var leftArrow = 37;
+            var rightArrow = 39;
+            var space = 32;
+
+            // Next
+            $(window).unbind('keydown').bind('keydown', 'j', this.next);
+            $(window).bind('keydown', rightArrow, this.next);
+
+            // Prev
+            $(window).bind('keydown', 'k', this.prev);
+            $(window).bind('keydown', leftArrow, this.prev);
+
+            // Start Slideshow
+            $(window).bind('keydown', space, this.slideshow);
+        },
+
         close: function () {
             React.unmountComponentAtNode(
                 document.getElementById(Config.App.lightboxElementId)
@@ -28,6 +46,7 @@ define('lightbox', ['react', 'handle-resize-mixin', 'photo-mixin'], function(Rea
         },
 
         next: function (e) {
+            console.log('next')
             if (e) {
                 e.stopPropagation();
             }

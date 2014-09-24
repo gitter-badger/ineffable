@@ -7,8 +7,9 @@ require.config({
         // Dependencies
         "bootstrap": "components/bootstrap/dist/js/bootstrap.min",
         "history": "components/history.js/scripts/bundled/html4%2Bhtml5/native.history",
-        "jquery": "components/jquery/dist/jquery.min",
         "jpegmeta": "components/jsjpegmeta/jpegmeta",
+        "jquery": "components/jquery/dist/jquery.min",
+        "jquery-hotkeys": "components/jquery.hotkeys/jquery.hotkeys",
         "linear-partition": "components/linear-partition/linear_partition.min",
         "moment": "components/momentjs/moment",
         "react": "components/react/react-with-addons",
@@ -61,6 +62,9 @@ require.config({
         },
         'in_array': {
             exports: 'in_array'
+        },
+        'jquery-hotkeys': {
+            deps: ['jquery']
         },
         'jquery-serialize-object': {
             deps: ['jquery']
